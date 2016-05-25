@@ -1,14 +1,9 @@
-#include "Table.h"
+#include "Game.h"
 
 int main()
 {
-/*	Deck *deck = new Deck(52);
-	deck->generateDeck();
-	Card* card = deck->getCard();
-	deck->addCard(card);
-	deck->mixDeck();*/
-	Table *table = new Table();
-	table->generateQueue();
+	Game *game = new Game();
+	game->Init();
 	std::cin.get();
 	return 0;
 }

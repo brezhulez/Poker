@@ -23,3 +23,7 @@ void Table::generateQueue()
 	}
 	queue.front()->setDealler(true);
 }
+Deck* Table::getMainDeck()
+{
+	return this->mainDeck;
+}

@@ -12,5 +12,6 @@ public:
 	Table();
 	~Table();
 	void generateQueue();
+	Deck* getMainDeck();
 };
 
