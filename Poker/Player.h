@@ -8,12 +8,14 @@ protected:
 	int cash;
 	Deck* deck;
 public:
-	Player(bool dealler, int cash);
+	Player(int cash);
 	~Player();
 	void Check();
 	void Call();
 	void Raise();
 	void Fold();
-	void addCard(Card* card)
+	bool getDealler();
+	void setDealler(bool dealler);
+	void addCard(Card* card);
 };
 

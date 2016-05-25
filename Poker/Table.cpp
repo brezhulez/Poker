@@ -13,3 +13,13 @@ Table::Table()
 Table::~Table()
 {
 }
+
+void Table::generateQueue()
+{
+	for (int i = 0; i < 5; i++)
+	{
+		Player *player = new Player(1000);
+		this->queue.push(player);
+	}
+	queue.front()->setDealler(true);
+}

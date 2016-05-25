@@ -7,8 +7,10 @@ protected:
 	Deck* mainDeck;
 	Deck* tableDeck;
 	std::queue<Player*> queue;
+	int cashRound;
 public:
 	Table();
 	~Table();
+	void generateQueue();
 };
 
