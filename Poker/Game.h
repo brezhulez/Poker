@@ -10,5 +10,6 @@ public:
 	Game();
 	~Game();
 	void Init();
+	void Blind();
 };
 

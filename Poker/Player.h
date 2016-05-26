@@ -16,6 +16,8 @@ public:
 	void Fold();
 	bool getDealler();
 	void setDealler(bool dealler);
+	void minusCash(int cash);
+	void plusCash(int cash);
 	void addCard(Card* card);
 };
 

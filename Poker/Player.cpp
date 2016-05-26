@@ -28,3 +28,12 @@ void Player::setDealler(bool dealler)
 {
 	this->dealler = dealler;
 }
+
+void Player::minusCash(int cash)
+{
+	this->cash -= cash;
+}
+void Player::plusCash(int cash)
+{
+	this->cash += cash;
+}
