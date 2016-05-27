@@ -16,11 +16,13 @@ protected:
 	void initGL();
 	void generateTextures();
 public:
-	Game();
+	Game(int minRate);
 	~Game();
 	void Init();
 	void Blind();
+	void giveCard();
 	void draw();
 	void resize(int width, int height);
+	void playerStep();
 };
 

@@ -2,9 +2,9 @@
 
 
 
-Game::Game()
+Game::Game(int minRate)
 {
-	this->table = new Table();
+	this->table = new Table(minRate);
 }
 
 Game::~Game()
@@ -115,7 +115,7 @@ void Game::draw()
 
 void Game::Init()
 {
-	this->initGL();
+	//this->initGL();
 
 	table->getMainDeck()->generateDeck();
 	table->getMainDeck()->mixDeck();
@@ -129,4 +129,25 @@ void Game::Blind()
 	table->nextPlayer();
 	table->doingRate(table->getMinRate());
 	table->nextPlayer();
+}
+
+void Game::giveCard()
+{
+	for (int i = 0; i < table->getQueue().size() * 2; i++)
+	{
+		Card *card = table->getMainDeck()->getCard();
+		table->getQueue().front()->addCard(card);
+		table->nextPlayer();
+	}
+}
+
+void Game::playerStep()
+{
+	//table->Call();
+	//table->Raise(100);
+	table->Fold();
+	table->Call();
+	table->Call();
+	table->Call();
+	table->Call();
 }
