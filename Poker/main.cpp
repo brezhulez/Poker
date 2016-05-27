@@ -1,11 +1,10 @@
-#include <windows.h>
 #include "Game.h"
 
 Game *poker;
 
-void handle(void);
-void display(void);
-void resize(int width, int height);
+GLvoid handle(GLvoid);
+GLvoid display(GLvoid);
+GLvoid resize(int width, int height);
 
 int main(int argc, char **argv)
 {
@@ -13,13 +12,13 @@ int main(int argc, char **argv)
 
 	glutInit(&argc, argv); //инициализирует работу с графикой
 	glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA); //выбор цветовой схемы и буферизацией
-	glutInitWindowSize(1200, 600); //размер окна
+	/*glutInitWindowSize(1200, 600); //размер окна
 	glutInitWindowPosition(	//положение окна
 		(glutGet(GLUT_SCREEN_WIDTH) - 1200) / 2,
 		(glutGet(GLUT_SCREEN_HEIGHT) - 600) / 2
-	);//аргументы задают положение окна по центру экрана
-
+	);//аргументы задают положение окна по центру экрана*/
 	glutCreateWindow("Покер"); //создает окно
+	glutFullScreen();
 
 	poker = new Game();
 	poker->Init();
@@ -32,14 +31,14 @@ int main(int argc, char **argv)
 	glutMainLoop();
 }
 
-void handle(void) {
+GLvoid handle(GLvoid) {
 	
 }
 
-void resize(int width, int height) {
+GLvoid resize(int width, int height) {
 	poker->resize(width, height);
 }
 
-void display(void) {
+GLvoid display(GLvoid) {
 	poker->draw();
 }

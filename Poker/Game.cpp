@@ -7,19 +7,17 @@ Game::Game()
 	this->table = new Table();
 }
 
-
 Game::~Game()
 {
 }
 
 void Game::initGL()
 {
-	glEnableClientState(GL_VERTEX_ARRAY);
-	glEnableClientState(GL_COLOR_ARRAY);
-
-	this->LoadGLTextures();
+	this->generateTextures();
 	// –азрешение наложение текстуры
 	glEnable(GL_TEXTURE_2D);
+	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+	glEnableClientState(GL_VERTEX_ARRAY);
 	// ”станавливаетс€ синий фон
 	glClearColor(0.2f, 0.5f, 0.75f, 1.0f);
 	// ”станавливаетс€ значение дл€ заполнени€ буфера глубины по умолчанию
@@ -47,64 +45,72 @@ void Game::resize(int width, int height)
 	//определение окна просмотра
 	glViewport(0, 0, width, height);
 
-	//установка корректной перспективы.
-	/*gluPerspective(45, ratio, 1, 1000);*/
-
 	//возврат к модели
 	glMatrixMode(GL_MODELVIEW);
 }
 
-void Game::LoadGLTextures()
+void Game::generateTextures()
 {
-	AUX_RGBImageRec *texture1;
-	texture1 = auxDIBImageLoad(TEXT("images/pu.bmp")); //загрузили изображение в пам€ть, как данные RGB
+	glGenTextures(52, textureCards);
 
-	// —оздание текстуры
-	glGenTextures(1, &textureCards[0]);
+	textureCards[0] = SOIL_load_OGL_texture
+	(
+		"images/card1.jpg",
+		SOIL_LOAD_AUTO,
+		SOIL_CREATE_NEW_ID,
+		SOIL_FLAG_MIPMAPS
+	);
 	glBindTexture(GL_TEXTURE_2D, textureCards[0]);
-
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexImage2D(GL_TEXTURE_2D, 0, 3, texture1->sizeX, texture1->sizeY, 0, GL_RGB, GL_UNSIGNED_BYTE, texture1->data);
+	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
 }
 
 void Game::draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	triangleVertexArray[0][0] = 0.0;
-	triangleVertexArray[0][1] = 0.0;
-	triangleVertexArray[0][2] = 0.0;
+	glMatrixMode(GL_MODELVIEW);
 
-	triangleVertexArray[1][0] = 1.0;
-	triangleVertexArray[1][1] = 1.0;
-	triangleVertexArray[1][2] = 0.0;
+	glLoadIdentity();
 
-	triangleVertexArray[2][0] = 1.0;
-	triangleVertexArray[2][1] = 0.0;
-	triangleVertexArray[2][2] = 0.0;
+	glBindTexture(GL_TEXTURE_2D, textureCards[0]);
 
-	triangleColorArray[0][0] = 0.25;
-	triangleColorArray[0][1] = 0.87;
-	triangleColorArray[0][2] = 0.81;
+	cardVertexArray[0][0] = 0.0;
+	cardVertexArray[0][1] = 0.0;
 
-	triangleColorArray[1][0] = 0.25;
-	triangleColorArray[1][1] = 0.87;
-	triangleColorArray[1][2] = 0.81;
+	cardVertexArray[1][0] = 0.0;
+	cardVertexArray[1][1] = 0.52;
 
-	triangleColorArray[2][0] = 0.25;
-	triangleColorArray[2][1] = 0.87;
-	triangleColorArray[2][2] = 0.81;
+	cardVertexArray[2][0] = 0.21;
+	cardVertexArray[2][1] = 0.52;
 
-	triangleIndexArray[0][0] = 0;
-	triangleIndexArray[0][1] = 1;
-	triangleIndexArray[0][2] = 2;
+	cardVertexArray[3][0] = 0.21;
+	cardVertexArray[3][1] = 0.0;
 
-	glVertexPointer(3, GL_FLOAT, 0, triangleVertexArray);
-	glColorPointer(3, GL_FLOAT, 0, triangleColorArray);
-	glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_BYTE, triangleIndexArray);
+	cardTextureArray[0][0] = 0.0;
+	cardTextureArray[0][1] = 1.0;
 
+	cardTextureArray[1][0] = 0.0;
+	cardTextureArray[1][1] = 0.0;
+
+	cardTextureArray[2][0] = 1.0;
+	cardTextureArray[2][1] = 0.0;
+
+	cardTextureArray[3][0] = 1.0;
+	cardTextureArray[3][1] = 1.0;
+
+	cardIndexArray[0][0] = 0;
+	cardIndexArray[0][1] = 1;
+	cardIndexArray[0][2] = 2;
+	cardIndexArray[0][3] = 3;
+
+	glVertexPointer(2, GL_FLOAT, 0, cardVertexArray);
+	glTexCoordPointer(2, GL_FLOAT, 0, cardTextureArray);
+	glDrawElements(GL_QUADS, 4, GL_UNSIGNED_BYTE, cardIndexArray);
+	
 	glutSwapBuffers();
+	glutPostRedisplay();
 }
 
 void Game::Init()
