@@ -21,5 +21,6 @@ public:
 	void draw();
 	void resize(int width, int height);
 	void playerStep();
+	void firsCircle();
 };
 

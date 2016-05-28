@@ -10,6 +10,7 @@ protected:
 	int cashRound;
 	int minRate;
 	int lastRate;
+	bool endCircle;
 public:
 	Table(int minRate);
 	~Table();
@@ -20,10 +21,14 @@ public:
 	int getMinRate();
 	int getLastRate();
 	void doingRate(int rate);
+	bool getEndCircle();
+	void setEndCircle(bool endCircle);
+	void checkTurn();
 
 	void Check();
 	void Call();
 	void Raise(int rate);
 	void Fold();
+	void allIn();
 };
 

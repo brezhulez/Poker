@@ -117,7 +117,7 @@ void Game::draw()
 
 void Game::Init()
 {
-	this->initGL();
+	//this->initGL();
 
 	table->getMainDeck()->generateDeck();
 	table->getMainDeck()->mixDeck();
@@ -145,11 +145,14 @@ void Game::giveCard()
 
 void Game::playerStep()
 {
-	//table->Call();
-	//table->Raise(100);
-	table->Fold();
 	table->Call();
-	table->Call();
-	table->Call();
-	table->Call();
+}
+
+void Game::firsCircle()
+{
+	while (table->getEndCircle() == false)
+	{
+		playerStep();
+		table->checkTurn();
+	}
 }

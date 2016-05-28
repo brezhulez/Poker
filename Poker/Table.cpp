@@ -9,6 +9,7 @@ Table::Table(int minRate)
 	this->cashRound = 0;
 	this->minRate = minRate;
 	this->lastRate = 0;
+	endCircle = false;
 }
 
 
@@ -68,6 +69,7 @@ void Table::doingRate(int rate)
 void Table::Call()
 {
 	this->doingRate(this->lastRate);
+	this->queue.front()->setTurn("Call");
 	this->nextPlayer();
 }
 
@@ -86,4 +88,30 @@ void Table::Fold()
 void Table::Check()
 {
 	this->nextPlayer();
+}
+
+void Table::allIn()
+{
+	this->doingRate(queue.front()->getCash());
+	this->nextPlayer();
+}
+
+bool Table::getEndCircle()
+{
+	return this->endCircle;
+}
+
+void Table::setEndCircle(bool endCircle)
+{
+	this->endCircle = endCircle;
+}
+
+void Table::checkTurn()
+{
+	for (int i = 0; i < queue.size(); i++)
+	{
+		if (queue.front()->getTurn() != "Check") return;
+		this->nextPlayer();
+	}
+	endCircle = true;
 }

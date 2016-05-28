@@ -8,27 +8,27 @@ GLvoid resize(int width, int height);
 
 int main(int argc, char **argv)
 {
-	//FreeConsole();
+	FreeConsole();
 
-	glutInit(&argc, argv); //инициализирует работу с графикой
+	/*glutInit(&argc, argv); //инициализирует работу с графикой
 	glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA); //выбор цветовой схемы и буферизацией
 	glutCreateWindow("Покер"); //создает окно
-	glutFullScreen();
+	glutFullScreen();*/
 
 	poker = new Game(50);
 	poker->Init();
 	poker->Blind();
 	poker->giveCard();
-	poker->playerStep();
+	poker->firsCircle();
 
-	//std::cin.get();
+	std::cin.get();
 
 	// регистрация
-	glutDisplayFunc(display);
+	/*glutDisplayFunc(display);
 	glutReshapeFunc(resize);
 	glutIdleFunc(handle);
 
-	glutMainLoop();
+	glutMainLoop();*/
 }
 
 GLvoid handle(GLvoid) {

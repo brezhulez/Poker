@@ -7,6 +7,7 @@ Player::Player(int cash)
 	this->dealler = false;
 	this->active = true;
 	this->cash = cash;
+	this->turn = "";
 	deck = new Deck(2);
 }
 
@@ -47,4 +48,19 @@ void Player::minusCash(int cash)
 void Player::plusCash(int cash)
 {
 	this->cash += cash;
+}
+
+int Player::getCash()
+{
+	return this->cash;
+}
+
+void Player::setTurn(std::string turn)
+{
+	this->turn = turn;
+}
+
+std::string Player::getTurn()
+{
+	return this->turn;
 }
