@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 #include <algorithm>
+#include <time.h>
 
 class Deck
 {
@@ -15,6 +16,7 @@ public:
 	~Deck();
 	void generateDeck();
 	Card* getCard();
+	Card* showCard();
 	void addCard(Card* card);
 	void mixDeck();
 };

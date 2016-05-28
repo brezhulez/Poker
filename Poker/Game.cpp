@@ -51,19 +51,20 @@ void Game::resize(int width, int height)
 
 void Game::generateTextures()
 {
-	glGenTextures(52, textureCards);
+	/*glGenTextures(52, textureCards);
 
 	textureCards[0] = SOIL_load_OGL_texture
 	(
-		"images/card1.jpg",
+		"images/orl001c10.jpg",
 		SOIL_LOAD_AUTO,
 		SOIL_CREATE_NEW_ID,
 		SOIL_FLAG_MIPMAPS
 	);
+	
 	glBindTexture(GL_TEXTURE_2D, textureCards[0]);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
+	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);*/
 }
 
 void Game::draw()
@@ -74,7 +75,8 @@ void Game::draw()
 
 	glLoadIdentity();
 
-	glBindTexture(GL_TEXTURE_2D, textureCards[0]);
+	//glBindTexture(GL_TEXTURE_2D, textureCards[0]);
+	glBindTexture(GL_TEXTURE_2D, table->getMainDeck()->showCard()->getTextureCard());
 
 	cardVertexArray[0][0] = 0.0;
 	cardVertexArray[0][1] = 0.0;
@@ -115,7 +117,7 @@ void Game::draw()
 
 void Game::Init()
 {
-	//this->initGL();
+	this->initGL();
 
 	table->getMainDeck()->generateDeck();
 	table->getMainDeck()->mixDeck();
