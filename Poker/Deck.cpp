@@ -15,7 +15,6 @@ Deck::~Deck()
 void Deck::generateDeck()
 {
 	const char* suits[4] = {"d","s","c","h"};
-	//std::string cards = "JQKA";
 	std::string fileName;
 	for (int i = 0; i < 4; i++)
 	{
@@ -23,7 +22,11 @@ void Deck::generateDeck()
 		{
 			fileName = "images/orl001";
 			fileName += suits[i];
-			fileName += std::to_string(j);
+			if(j==11) fileName += "J";
+			else if (j == 12) fileName += "Q";
+			else if (j == 13) fileName += "K";
+			else if (j == 14) fileName += "A";
+			else fileName += std::to_string(j);
 			fileName += ".jpg";
 			Card *obj = new Card(j, suits[i], fileName.c_str());
 			this->deck.push_back(obj);
@@ -198,9 +201,9 @@ Card* Deck::getCard()
 	return card;
 }
 
-Card* Deck::showCard()
+Card* Deck::showCard(int position)
 {
-	return this->deck.back();
+	return this->deck[position];
 }
 
 void Deck::addCard(Card* card)
@@ -212,6 +215,11 @@ void Deck::mixDeck()
 {
 	srand(time(0));
 	std::random_shuffle(this->deck.begin(), this->deck.end());
+}
+
+bool Deck::isEmpty()
+{
+	return this->deck.empty();
 }
 //функции для тестирования комбинаций
 /*

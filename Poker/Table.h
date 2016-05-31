@@ -21,6 +21,7 @@ public:
 	Deck* getTableDeck();
 	std::queue<Player*> getQueue();
 	int getMinRate();
+	int getCashRound();
 	int getLastRate();
 	void doingRate(int rate);
 	bool getEndCircle();

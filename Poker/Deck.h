@@ -16,11 +16,12 @@ public:
 	~Deck();
 	void generateDeck();
 	Card* getCard();
-	Card* showCard();
+	Card* showCard(int position);
 	void addCard(Card* card);
 	void mixDeck();
 	Deck*& operator+ (Deck& left);
 	int findCombination();
+	bool isEmpty();
 
 	//функции для тестирования комбинаций
 	/*void generateRoyalFlush();

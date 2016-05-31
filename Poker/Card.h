@@ -11,6 +11,7 @@ protected:
 	const char* suit;
 	GLuint textureCard;
 public:
+	static GLuint shirtCard;
 	Card(int value, const char* suit, const char* fileName);
 	GLuint getTextureCard();
 	int getValue();

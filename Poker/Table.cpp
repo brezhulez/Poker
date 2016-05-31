@@ -32,15 +32,39 @@ void Table::generateQueue()
 {
 	for (int i = 0; i < 5; i++)
 	{
-		Player *player = new Player(1000);
+		Player *player;
+		if(i==0) player = new Player("Player", 1000);
+		else player = new Player("Computer"+std::to_string(i), 1000);
+
+		if (i == 0) {
+			//задаём игрока, делаем диллером, устанавливаем координаты
+			player->setDealler(true);
+			player->setMan(true);
+			player->setX(-0.25);
+			player->setY(-0.98);
+		}
+		else if (i == 1) {
+			player->setX(-0.98);
+			player->setY(0.40);
+		}
+		else if (i == 2) {
+			player->setX(-0.45);
+			player->setY(0.40);
+		}
+		else if (i == 3) {
+			player->setX(0.05);
+			player->setY(0.40);
+		}
+		else if (i == 4) {
+			player->setX(0.55);
+			player->setY(0.40);
+		}
 		this->queue.push(player);
 	}
-	queue.front()->setDealler(true);
 }
 
 void Table::nextPlayer()
 {
-
 	this->queue.push(this->queue.front());
 	this->queue.pop();
 	while(queue.front()->getActive() == false)
@@ -156,9 +180,15 @@ int Table::combination()
 
 		Deck* cardsCombination = *this->tableDeck + *queue.front()->getDeck();
 		int combination = cardsCombination->findCombination();
+		queue.front()->setCombination(combination);
 		delete cardsCombination;
 		this->nextPlayer();
 	}
 	
 	return 1;
+}
+
+int Table::getCashRound()
+{
+	return this->cashRound;
 }
