@@ -7,12 +7,14 @@
 class Card
 {
 protected:
-	std::string value;
+	int value;
 	const char* suit;
 	GLuint textureCard;
 public:
-	Card(std::string value, const char* suit, const char* fileName);
+	Card(int value, const char* suit, const char* fileName);
 	GLuint getTextureCard();
+	int getValue();
+	const char* getSuit();
 	~Card();
 };
 

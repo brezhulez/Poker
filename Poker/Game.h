@@ -17,10 +17,16 @@ public:
 	~Game();
 	void Init();
 	void Blind();
-	void giveCard();
+	void giveCardPlayer();
+	void giveThreeCard();
+	void giveOneCard();
 	void draw();
 	void resize(int width, int height);
 	void playerStep();
-	void firsCircle();
+	void firstCircle();
+	void secondCircle();
+	void thirdCircle();
+	void fourthCircle();
+	void winner();
 };
 

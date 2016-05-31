@@ -19,5 +19,19 @@ public:
 	Card* showCard();
 	void addCard(Card* card);
 	void mixDeck();
+	Deck*& operator+ (Deck& left);
+	int findCombination();
+
+	//функции для тестирования комбинаций
+	/*void generateRoyalFlush();
+	void generateStraightFlush();
+	void generateFourofKind();
+	void generateFullHouse();
+	void generateFlush();
+	void generateStraight();
+	void generateThreeofKind();
+	void generateTwoPair();
+	void generatePair();
+	void generateHightCard();*/
 };
 

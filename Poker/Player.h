@@ -15,6 +15,7 @@ public:
 	int getCash();
 	bool getDealler();
 	bool getActive();
+	Deck* getDeck();
 	void setDealler(bool dealler);
 	void setActive(bool active);
 	void minusCash(int cash);

@@ -133,7 +133,7 @@ void Game::Blind()
 	table->nextPlayer();
 }
 
-void Game::giveCard()
+void Game::giveCardPlayer()
 {
 	for (int i = 0; i < table->getQueue().size() * 2; i++)
 	{
@@ -143,16 +143,71 @@ void Game::giveCard()
 	}
 }
 
+void Game::giveThreeCard()
+{
+	for (int i = 0; i < 3; i++)
+	{
+		Card *card = table->getMainDeck()->getCard();
+		table->getTableDeck()->addCard(card);
+	}
+}
+
+void Game::giveOneCard()
+{
+	Card *card = table->getMainDeck()->getCard();
+	table->getTableDeck()->addCard(card);
+}
+
 void Game::playerStep()
 {
 	table->Call();
 }
 
-void Game::firsCircle()
+void Game::firstCircle()
 {
+	this->giveCardPlayer();
 	while (table->getEndCircle() == false)
 	{
 		playerStep();
 		table->checkTurn();
 	}
+	table->clearTurn();
+}
+
+void Game::secondCircle()
+{
+	this->giveThreeCard();
+	while (table->getEndCircle() == false)
+	{
+		playerStep();
+		table->checkTurn();
+	}
+	table->clearTurn();
+}
+
+void Game::thirdCircle()
+{
+	this->giveOneCard();
+	while (table->getEndCircle() == false)
+	{
+		playerStep();
+		table->checkTurn();
+	}
+	table->clearTurn();
+}
+
+void Game::fourthCircle()
+{
+	this->giveOneCard();
+	while (table->getEndCircle() == false)
+	{
+		playerStep();
+		table->checkTurn();
+	}
+	table->clearTurn();
+}
+
+void Game::winner()
+{
+	table->combination();
 }

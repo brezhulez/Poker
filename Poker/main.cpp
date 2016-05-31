@@ -18,8 +18,11 @@ int main(int argc, char **argv)
 	poker = new Game(50);
 	poker->Init();
 	poker->Blind();
-	poker->giveCard();
-	poker->firsCircle();
+	poker->firstCircle();
+	poker->secondCircle();
+	poker->thirdCircle();
+	poker->fourthCircle();
+	poker->winner();
 
 	std::cin.get();
 

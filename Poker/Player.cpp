@@ -64,3 +64,8 @@ std::string Player::getTurn()
 {
 	return this->turn;
 }
+
+Deck* Player::getDeck()
+{
+	return this->deck;
+}

@@ -2,7 +2,7 @@
 
 
 
-Card::Card(std::string value, const char* suit, const char* fileName)
+Card::Card(int value, const char* suit, const char* fileName)
 {
 	this->value = value;
 	this->suit = suit;
@@ -24,6 +24,16 @@ Card::Card(std::string value, const char* suit, const char* fileName)
 GLuint Card::getTextureCard()
 {
 	return this->textureCard;
+}
+
+int Card::getValue()
+{
+	return this->value;
+}
+
+const char* Card::getSuit()
+{
+	return this->suit;
 }
 
 Card::~Card()
