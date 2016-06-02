@@ -107,3 +107,8 @@ Deck* Player::getDeck()
 {
 	return this->deck;
 }
+
+std::string Player::getName()
+{
+	return this->name;
+}

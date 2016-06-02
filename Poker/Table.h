@@ -17,6 +17,7 @@ public:
 	~Table();
 	void generateQueue();
 	void nextPlayer();
+	void nextPlayerDraw();
 	Deck* getMainDeck();
 	Deck* getTableDeck();
 	std::queue<Player*> getQueue();
@@ -35,6 +36,8 @@ public:
 	void Raise(int rate);
 	void Fold();
 	void allIn();
+
 	int combination();
+	std::string getCombinationName(int rang);
 };
 

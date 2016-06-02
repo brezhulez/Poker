@@ -16,6 +16,7 @@ public:
 	~Deck();
 	void generateDeck();
 	Card* getCard();
+	int getSize();
 	Card* showCard(int position);
 	void addCard(Card* card);
 	void mixDeck();

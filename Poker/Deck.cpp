@@ -221,6 +221,11 @@ bool Deck::isEmpty()
 {
 	return this->deck.empty();
 }
+
+int Deck::getSize()
+{
+	return this->deck.size();
+}
 //функции для тестирования комбинаций
 /*
 void Deck::generateHightCard()

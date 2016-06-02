@@ -33,15 +33,15 @@ void Table::generateQueue()
 	for (int i = 0; i < 5; i++)
 	{
 		Player *player;
-		if(i==0) player = new Player("Player", 1000);
-		else player = new Player("Computer"+std::to_string(i), 1000);
+		if(i==0) player = new Player("Player", 10000);
+		else player = new Player("Computer"+std::to_string(i), 10000);
 
 		if (i == 0) {
 			//задаём игрока, делаем диллером, устанавливаем координаты
 			player->setDealler(true);
 			player->setMan(true);
 			player->setX(-0.25);
-			player->setY(-0.98);
+			player->setY(-0.92);
 		}
 		else if (i == 1) {
 			player->setX(-0.98);
@@ -61,6 +61,12 @@ void Table::generateQueue()
 		}
 		this->queue.push(player);
 	}
+}
+
+void Table::nextPlayerDraw()
+{
+	this->queue.push(this->queue.front());
+	this->queue.pop();
 }
 
 void Table::nextPlayer()
@@ -152,9 +158,20 @@ void Table::setEndCircle(bool endCircle)
 
 void Table::checkTurn()
 {
+	std::string  name = queue.front()->getName();
 	for (int i = 0; i < queue.size(); i++)
 	{
-		if (queue.front()->getTurn() != "Call") return;
+		if (queue.front()->getTurn() != "Call" && queue.front()->getActive()==true) {
+			while (queue.front()->getName() != name)
+			{
+				this->nextPlayer();
+			}
+			return;
+		}
+		this->nextPlayer();
+	}
+	while (queue.front()->getName() != name)
+	{
 		this->nextPlayer();
 	}
 	this->endCircle = true;
@@ -191,4 +208,9 @@ int Table::combination()
 int Table::getCashRound()
 {
 	return this->cashRound;
+}
+
+std::string Table::getCombinationName(int rang)
+{
+	return this->combinations[rang];
 }
