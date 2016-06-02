@@ -102,26 +102,18 @@ void Game::draw()
 
 	//вывод победителя на экран
 	if (this->gameEnd == true) {
-		Player *player;
-		int combination = 0;
 		for (int i = 0; i < table->getQueue().size(); i++)
 		{
-			if (table->getQueue().front()->getActive() == true)
-			{
-				if (combination < table->getQueue().front()->getCombination())
-				{
-					player = table->getQueue().front();
-					combination = table->getQueue().front()->getCombination();
-				}
+			if (table->getQueue().front()->getWinner() == true) {
+				std::string winner = "Winner: " + table->getQueue().front()->getName();
+				this->displayText(-0.8, -0.6, 0.5, 0.5, 0.5, winner.c_str());
+
+				std::string comb = "Combination: " + table->getCombinationName(table->getQueue().front()->getCombination());
+				this->displayText(-0.8, -0.75, 0.5, 0.5, 0.5, comb.c_str());
+				break;
 			}
 			table->nextPlayerDraw();
 		}
-
-		std::string winner = "Winner: " + player->getName();
-		this->displayText(-0.8, -0.6, 0.5, 0.5, 0.5, winner.c_str());
-
-		std::string comb = "Combination: " + table->getCombinationName(combination);
-		this->displayText(-0.8, -0.75, 0.5, 0.5, 0.5, comb.c_str());
 	}
 	
 	this->displayText(0.61, 0.25, 0.5, 0.5, 0.5, "Deck");
@@ -491,6 +483,27 @@ void Game::fourthCircle()
 void Game::winner()
 {
 	table->combination();
+
+	Player *player;
+	int combination = 0;
+	for (int i = 0; i < table->getQueue().size(); i++)
+	{
+		if (table->getQueue().front()->getActive() == true)
+		{
+			if (combination < table->getQueue().front()->getCombination())
+			{
+				player = table->getQueue().front();
+				combination = table->getQueue().front()->getCombination();
+			}
+		}
+		table->nextPlayerDraw();
+	}
+	for (int i = 0; i < table->getQueue().size(); i++)
+	{
+		if (table->getQueue().front()->getName() == player->getName()) table->getQueue().front()->setWinner(true);
+		table->nextPlayerDraw();
+	}
+
 	this->gameEnd = true;
 }
 

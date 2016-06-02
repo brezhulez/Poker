@@ -10,6 +10,7 @@ Player::Player(std::string name, int cash)
 	this->cash = cash;
 	this->turn = "";
 	this->name = name;
+	this->winner = false;
 	deck = new Deck(2);
 }
 
@@ -111,4 +112,13 @@ Deck* Player::getDeck()
 std::string Player::getName()
 {
 	return this->name;
+}
+
+void Player::setWinner(bool win)
+{
+	this->winner = win;
+}
+bool Player::getWinner()
+{
+	return this->winner;
 }

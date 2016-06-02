@@ -7,6 +7,7 @@ protected:
 	bool dealler;
 	bool active;
 	bool man;
+	bool winner;
 	int cash;
 	std::string turn;
 	std::string name;
@@ -37,5 +38,7 @@ public:
 	void setCombination(int combination);
 	std::string getTurn();
 	std::string getName();
+	void setWinner(bool win);
+	bool getWinner();
 };
 

@@ -33,8 +33,8 @@ void Table::generateQueue()
 	for (int i = 0; i < 5; i++)
 	{
 		Player *player;
-		if(i==0) player = new Player("Player", 10000);
-		else player = new Player("Computer"+std::to_string(i), 10000);
+		if(i==0) player = new Player("Player", 100000);
+		else player = new Player("Computer"+std::to_string(i), 100000);
 
 		if (i == 0) {
 			//задаём игрока, делаем диллером, устанавливаем координаты
