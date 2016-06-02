@@ -20,7 +20,7 @@ public:
 	Card* showCard(int position);
 	void addCard(Card* card);
 	void mixDeck();
-	Deck*& operator+ (Deck& left);
+	Deck*& operator+ (Deck& left); //перегрузка оператора сложения
 	int findCombination();
 	bool isEmpty();
 

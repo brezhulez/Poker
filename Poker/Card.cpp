@@ -7,8 +7,8 @@ Card::Card(int value, const char* suit, const char* fileName)
 	this->value = value;
 	this->suit = suit;
 
-	glGenTextures(1, &this->textureCard);
-	this->textureCard =SOIL_load_OGL_texture
+	glGenTextures(1, &this->textureCard);  // выделение памяти для текстуры
+	this->textureCard =SOIL_load_OGL_texture // загрузка изображения в память
 	(
 		fileName,
 		SOIL_LOAD_AUTO,

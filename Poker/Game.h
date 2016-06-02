@@ -14,9 +14,9 @@ protected:
 	bool fourthCircleFlag;
 	int currentCircle;
 	bool gameEnd;
-	GLfloat cardVertexArray[4][2];
-	GLfloat cardTextureArray[4][2];
-	GLubyte cardIndexArray[1][4];
+	GLfloat cardVertexArray[4][2]; //координаты одной карты
+	GLfloat cardTextureArray[4][2]; //координаты текстуры карты
+	GLubyte cardIndexArray[1][4]; //индекс вершин
 	void initGL();
 	std::string logicComp();
 public:

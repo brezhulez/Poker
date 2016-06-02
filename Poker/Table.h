@@ -10,7 +10,7 @@ protected:
 	int cashRound;
 	int minRate;
 	int lastRate;
-	bool endCircle;
+	bool endCircle; //контролирует активность текущего круга торгов
 	std::string combinations[10];
 public:
 	Table(int minRate);

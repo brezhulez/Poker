@@ -9,9 +9,9 @@ class Card
 protected:
 	int value;
 	const char* suit;
-	GLuint textureCard;
+	GLuint textureCard; //текстура карты
 public:
-	static GLuint shirtCard;
+	static GLuint shirtCard; //рубашка карты
 	Card(int value, const char* suit, const char* fileName);
 	GLuint getTextureCard();
 	int getValue();

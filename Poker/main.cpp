@@ -83,14 +83,14 @@ int main(int argc, char **argv)
 	poker->Init();
 
 	// регистрация
-	glutDisplayFunc(display);
-	glutReshapeFunc(resize);
-	glutIdleFunc(handle);
-	glutTimerFunc(40, timf, 0);
+	glutDisplayFunc(display); //функция для отрисовки экрана
+	glutReshapeFunc(resize); //функция для изменения размера экрана
+	glutIdleFunc(handle); //функция, выполняющаяся во время простоя программы
+	glutTimerFunc(40, timf, 0); //таймер обновления
+	
+	glutSpecialFunc(processSpecialKeys);//считывание нажатия клавиши
 
-	glutSpecialFunc(processSpecialKeys);
-
-	glutMainLoop();
+	glutMainLoop(); //запускает цикл программы
 }
 
 GLvoid handle(GLvoid) {

@@ -83,6 +83,7 @@ void Game::displayText(float x, float y, float r, float g, float b, const char *
 
 void Game::draw()
 {
+	//очищаем экран
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	glMatrixMode(GL_MODELVIEW);
@@ -99,6 +100,7 @@ void Game::draw()
 	this->displayText(0.65, -0.70, 0.5, 0.5, 0.5, "F5 - Fold");
 	this->displayText(0.65, -0.75, 0.5, 0.5, 0.5, "F6 - AllIn");
 
+	//вывод победителя на экран
 	if (this->gameEnd == true) {
 		Player *player;
 		int combination = 0;
@@ -158,9 +160,9 @@ void Game::draw()
 	cardIndexArray[0][2] = 2;
 	cardIndexArray[0][3] = 3;
 
-	glVertexPointer(2, GL_FLOAT, 0, cardVertexArray);
-	glTexCoordPointer(2, GL_FLOAT, 0, cardTextureArray);
-	glDrawElements(GL_QUADS, 4, GL_UNSIGNED_BYTE, cardIndexArray);
+	glVertexPointer(2, GL_FLOAT, 0, cardVertexArray); //резирвирует вершины для 4-х точек
+	glTexCoordPointer(2, GL_FLOAT, 0, cardTextureArray); //резирвирует текстуру для выводимой фигуры
+	glDrawElements(GL_QUADS, 4, GL_UNSIGNED_BYTE, cardIndexArray); //задает порядок соединения вершин
 
 	//отрисовываем игроков
 	float cardX = 0.22;
@@ -276,7 +278,7 @@ void Game::draw()
 			x += cardX;
 		}
 	}
-	glutSwapBuffers();
+	glutSwapBuffers(); //обновление экрана
 }
 
 void Game::Init()
